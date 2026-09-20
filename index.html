@@ -1089,6 +1089,52 @@ select option{background:#040b1a;color:var(--cyan)}
       </div>
       <div style="margin:12px 0">
         <div style="height:8px;background:rgba(4,18,34,.6);border:1px solid var(--border);border-radius:4px;overflow:hidden"><div id="salaryProgressFill" style="height:100%;width:0%;background:linear-gradient(90deg,var(--green),var(--cyan));transition:width .3s;box-shadow:0 0 10px var(--cyan)"></div></div>
+
+      <!-- 全宇宙工资发放统计 -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:16px 0">
+        <div style="text-align:center;padding:12px;background:rgba(0,212,255,0.05);border-radius:8px">
+          <div style="font-size:24px;font-weight:bold;color:var(--cyan)" id="salaryTotalBeings">120亿亿</div>
+          <div style="font-size:11px;color:var(--text-dim)">全宇宙领工资存在</div>
+        </div>
+        <div style="text-align:center;padding:12px;background:rgba(82,196,26,0.05);border-radius:8px">
+          <div style="font-size:24px;font-weight:bold;color:#52C41A" id="salaryTotalPaid">∞</div>
+          <div style="font-size:11px;color:var(--text-dim)">累计发放总额</div>
+        </div>
+        <div style="text-align:center;padding:12px;background:rgba(250,173,20,0.05);border-radius:8px">
+          <div style="font-size:24px;font-weight:bold;color:#FAAD14" id="salaryPerBeing">¥∞</div>
+          <div style="font-size:11px;color:var(--text-dim)">人均每月工资</div>
+        </div>
+        <div style="text-align:center;padding:12px;background:rgba(156,171,234,0.05);border-radius:8px">
+          <div style="font-size:24px;font-weight:bold;color:var(--m-05)" id="salarySuccessRate">100%</div>
+          <div style="font-size:11px;color:var(--text-dim)">发放成功率</div>
+        </div>
+      </div>
+      
+      <!-- 工资发放详情 -->
+      <div style="background:rgba(0,0,0,0.2);border-radius:8px;padding:12px;margin-bottom:12px">
+        <div style="font-size:13px;font-weight:bold;color:var(--text);margin-bottom:8px">📊 工资发放详情</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px">
+          <div style="color:var(--text-dim)">发放频率：<span style="color:#52C41A">每秒自动发放</span></div>
+          <div style="color:var(--text-dim)">覆盖星球：<span style="color:var(--text)">1000亿颗</span></div>
+          <div style="color:var(--text-dim)">覆盖星系：<span style="color:var(--text)">2万亿个</span></div>
+          <div style="color:var(--text-dim)">发放平台：<span style="color:var(--text)">35+种全球金融平台</span></div>
+          <div style="color:var(--text-dim)">发放状态：<span style="color:#52C41A">● 运行中</span></div>
+          <div style="color:var(--text-dim)">自动发放：<span style="color:#52C41A">已开启</span></div>
+        </div>
+      </div>
+      
+      <!-- 全宇宙工资覆盖范围 -->
+      <div style="background:rgba(0,0,0,0.2);border-radius:8px;padding:12px">
+        <div style="font-size:13px;font-weight:bold;color:var(--text);margin-bottom:8px">🌌 全宇宙工资覆盖范围</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px">
+          <div style="color:var(--text-dim)">地球人类：<span style="color:#52C41A">80亿 已覆盖</span></div>
+          <div style="color:var(--text-dim)">星际文明：<span style="color:#52C41A">12个 已覆盖</span></div>
+          <div style="color:var(--text-dim)">全宇宙存在：<span style="color:#52C41A">120亿亿 已覆盖</span></div>
+          <div style="color:var(--text-dim)">所有智慧生命：<span style="color:#52C41A">100% 已覆盖</span></div>
+        </div>
+        <div style="font-size:10px;color:var(--text-dim);text-align:center;margin-top:8px">全宇宙工资发放系统 · 全民基本收入(UBI) · 自动发放 · 永不中断</div>
+      </div>
+
         <div style="text-align:center;font-size:11px;color:var(--text-dim);margin-top:6px;font-family:var(--mono)" id="salaryProgressText">已发放 0 / 8,000,000,000 人（0.00000000%）</div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:10px 0">
