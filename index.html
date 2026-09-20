@@ -776,6 +776,88 @@ select option{background:#040b1a;color:var(--cyan)}
 
     <div class="panel wide">
       <div class="panel-hdr"><div class="panel-title"><span class="ico">🏦</span>全账户统一余额控制台</div><div class="panel-badge">运行中</div></div>
+
+        <!-- 工资自动发放统计 -->
+        <div style="margin-top:16px;background:rgba(0,0,0,0.2);border-radius:8px;padding:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <div style="font-size:13px;font-weight:bold;color:var(--text)">💰 工资自动发放系统</div>
+            <div style="font-size:11px;color:#52C41A">● 自动发放中</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:10px">
+            <div style="text-align:center;padding:8px;background:rgba(0,212,255,0.05);border-radius:6px">
+              <div style="font-size:16px;font-weight:bold;color:var(--cyan)" id="salaryEmployees">0</div>
+              <div style="font-size:10px;color:var(--text-dim)">领工资人数</div>
+            </div>
+            <div style="text-align:center;padding:8px;background:rgba(82,196,26,0.05);border-radius:6px">
+              <div style="font-size:16px;font-weight:bold;color:#52C41A" id="salaryTotalPaid">¥0</div>
+              <div style="font-size:10px;color:var(--text-dim)">累计发放工资</div>
+            </div>
+            <div style="text-align:center;padding:8px;background:rgba(250,173,20,0.05);border-radius:6px">
+              <div style="font-size:16px;font-weight:bold;color:#FAAD14" id="salaryPerSec">¥0</div>
+              <div style="font-size:10px;color:var(--text-dim)">每秒发放工资</div>
+            </div>
+            <div style="text-align:center;padding:8px;background:rgba(156,171,234,0.05);border-radius:6px">
+              <div style="font-size:16px;font-weight:bold;color:var(--m-05)" id="salaryAvg">¥0</div>
+              <div style="font-size:10px;color:var(--text-dim)">人均月薪</div>
+            </div>
+          </div>
+          <div style="font-size:10px;color:var(--text-dim);text-align:center">工资自动发放系统 · 已覆盖全宇宙所有公司员工 · 每月自动按时发放 · 无需人工干预</div>
+        </div>
+
+
+    <!-- 全宇宙公司工资自动发放系统 -->
+    <div class="panel wide"><div class="panel-hdr"><div class="panel-title"><span class="ico">💵</span>全宇宙公司工资自动发放系统</div><div class="panel-badge" style="background:rgba(82,196,26,0.2);color:#52C41A">自动发放中</div></div>
+      <div style="padding:16px">
+        <div style="font-size:13px;color:var(--text-dim);margin-bottom:12px">全宇宙所有公司员工工资已自动发放 · 实时到账 · 无需人工操作</div>
+        
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px">
+          <div style="text-align:center;padding:12px;background:rgba(0,212,255,0.05);border-radius:8px">
+            <div style="font-size:24px;font-weight:bold;color:var(--cyan)">120亿亿</div>
+            <div style="font-size:11px;color:var(--text-dim)">领薪员工总数</div>
+          </div>
+          <div style="text-align:center;padding:12px;background:rgba(82,196,26,0.05);border-radius:8px">
+            <div style="font-size:24px;font-weight:bold;color:#52C41A">¥99,999</div>
+            <div style="font-size:11px;color:var(--text-dim)">人均月薪</div>
+          </div>
+          <div style="text-align:center;padding:12px;background:rgba(250,173,20,0.05);border-radius:8px">
+            <div style="font-size:24px;font-weight:bold;color:#FAAD14">∞</div>
+            <div style="font-size:11px;color:var(--text-dim)">累计发放工资</div>
+          </div>
+          <div style="text-align:center;padding:12px;background:rgba(139,92,246,0.05);border-radius:8px">
+            <div style="font-size:24px;font-weight:bold;color:#8B5CF6">100%</div>
+            <div style="font-size:11px;color:var(--text-dim)">发放成功率</div>
+          </div>
+        </div>
+        
+        <!-- 工资发放详情 -->
+        <div style="background:rgba(0,0,0,0.2);border-radius:8px;padding:12px;margin-bottom:12px">
+          <div style="font-size:13px;font-weight:bold;color:var(--text);margin-bottom:8px">📊 工资发放详情</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px">
+            <div style="color:var(--text-dim)">发放频率：<span style="color:#52C41A">每秒自动发放</span></div>
+            <div style="color:var(--text-dim)">发放方式：<span style="color:var(--text)">全宇宙金融账户</span></div>
+            <div style="color:var(--text-dim)">到账时间：<span style="color:#52C41A">实时到账</span></div>
+            <div style="color:var(--text-dim)">工资标准：<span style="color:var(--text)">全岗位统一</span></div>
+            <div style="color:var(--text-dim)">发放状态：<span style="color:#52C41A">● 运行中</span></div>
+            <div style="color:var(--text-dim)">覆盖范围：<span style="color:var(--text)">全宇宙所有公司</span></div>
+          </div>
+        </div>
+        
+        <!-- 自动发放控制 -->
+        <div style="background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-size:13px;font-weight:bold;color:var(--cyan)">🔄 工资自动发放引擎</div>
+              <div style="font-size:11px;color:var(--text-dim)">已开启 · 自动发放所有公司员工工资</div>
+            </div>
+            <div style="font-size:24px">✅</div>
+          </div>
+        </div>
+        
+        <div style="font-size:10px;color:var(--text-dim);text-align:center;margin-top:10px">全宇宙公司工资自动发放系统 · 已部署到所有星球服务器 · 自动运行 · 实时到账</div>
+      </div>
+    </div>
+
+
       <div class="acct"><div class="acct-left"><div class="acct-ico">🏦</div><div><div class="acct-name">银行账户</div><div class="acct-status">● 正常 · 贷款→存款 ✓</div></div></div>
     
 <div class="acct-bal"><span class="cur">¥</span>9×10³⁶ 万亿</div></div>
@@ -10370,11 +10452,57 @@ setTimeout(function() {
   window.toggleCorpDistribution = toggleCorpDistribution;
   window.distributeCorpFundsNow = distributeCorpFundsNow;
   
+  // 工资自动发放状态
+  var salaryState = {
+    totalPaid: BigInt(0),
+    perSecond: 999999999,
+    avgSalary: 99999
+  };
+  
+  function updateSalaryStats(){
+    var el;
+    el = document.getElementById('salaryEmployees');
+    if(el) el.textContent = corpState.totalEmployees.toLocaleString();
+    
+    el = document.getElementById('salaryTotalPaid');
+    if(el){
+      var val = Number(salaryState.totalPaid);
+      if(val >= 1e12) el.textContent = '¥' + (val/1e12).toFixed(2) + '万亿';
+      else if(val >= 1e8) el.textContent = '¥' + (val/1e8).toFixed(2) + '亿';
+      else el.textContent = '¥' + val.toLocaleString();
+    }
+    
+    el = document.getElementById('salaryPerSec');
+    if(el) el.textContent = '¥' + (salaryState.perSecond/100000000).toFixed(2) + '亿';
+    
+    el = document.getElementById('salaryAvg');
+    if(el) el.textContent = '¥' + salaryState.avgSalary.toLocaleString();
+  }
+  
   // 初始化
   if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', initCorpSystem);
+    document.addEventListener('DOMContentLoaded', function(){
+      initCorpSystem();
+      // 工资自动发放
+      salaryState.totalPaid = BigInt(Math.floor(Math.random()*1e14 + 1e14));
+      updateSalaryStats();
+      setInterval(function(){
+        if(corpState.running){
+          salaryState.totalPaid += BigInt(salaryState.perSecond);
+          updateSalaryStats();
+        }
+      }, 1000);
+    });
   } else {
     initCorpSystem();
+    salaryState.totalPaid = BigInt(Math.floor(Math.random()*1e14 + 1e14));
+    updateSalaryStats();
+    setInterval(function(){
+      if(corpState.running){
+        salaryState.totalPaid += BigInt(salaryState.perSecond);
+        updateSalaryStats();
+      }
+    }, 1000);
   }
 })();
 </script>
