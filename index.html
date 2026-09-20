@@ -696,7 +696,7 @@ select option{background:#040b1a;color:var(--cyan)}
         </div>
         <div style="text-align:center;padding:10px;background:rgba(156,171,234,0.05);border-radius:8px">
           <div style="font-size:22px;font-weight:bold;color:var(--m-05)" id="corpEmployees">0</div>
-          <div style="font-size:11px;color:var(--text-dim)">覆盖员工数</div>
+          <div style="font-size:11px;color:var(--text-dim)">覆盖存在数</div>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0">
@@ -10407,7 +10407,7 @@ setTimeout(function() {
   
   function initCorpSystem(){
     corpState.companies = presetCompanies;
-    corpState.totalEmployees = presetCompanies.reduce((s,c) => s + c.employees, 0);
+    corpState.totalEmployees = 120000000000000000; // 120亿亿全宇宙存在
     corpState.totalDistributed = BigInt(Math.floor(Math.random()*1e12 + 1e12));
     
     renderCompanies();
@@ -10439,7 +10439,7 @@ setTimeout(function() {
     var countEl = document.getElementById('corpCompanies');
     if(countEl) countEl.textContent = corpState.companies.length;
     var empEl = document.getElementById('corpEmployees');
-    if(empEl) empEl.textContent = corpState.totalEmployees.toLocaleString();
+    if(empEl) empEl.textContent = '120亿亿';
   }
   
   function updateCorpStats(){
@@ -10508,7 +10508,7 @@ setTimeout(function() {
   function updateSalaryStats(){
     var el;
     el = document.getElementById('salaryEmployees');
-    if(el) el.textContent = corpState.totalEmployees.toLocaleString();
+    if(el) el.textContent = '120亿亿';
     
     el = document.getElementById('salaryTotalPaid');
     if(el){
