@@ -2559,6 +2559,64 @@ select option{background:#040b1a;color:var(--cyan)}
     </div>
 
   </div></div>
+    <!-- 全球互联网协议统计 -->
+    <div class="panel"><div class="panel-hdr"><div class="panel-title"><span class="ico">📊</span>互联网协议统计</div><div class="panel-badge">实时</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0">
+        <div style="padding:8px;background:rgba(0,212,255,0.05);border-radius:6px;text-align:center">
+          <div style="font-size:18px;font-weight:bold;color:var(--cyan)">IPv6</div>
+          <div style="font-size:11px;color:var(--text-dim)">普及率 75%</div>
+        </div>
+        <div style="padding:8px;background:rgba(82,196,26,0.05);border-radius:6px;text-align:center">
+          <div style="font-size:18px;font-weight:bold;color:#52C41A">HTTPS</div>
+          <div style="font-size:11px;color:var(--text-dim)">加密率 92%</div>
+        </div>
+        <div style="padding:8px;background:rgba(250,173,20,0.05);border-radius:6px;text-align:center">
+          <div style="font-size:18px;font-weight:bold;color:#FAAD14">DNSSEC</div>
+          <div style="font-size:11px;color:var(--text-dim)">普及率 35%</div>
+        </div>
+        <div style="padding:8px;background:rgba(156,171,234,0.05);border-radius:6px;text-align:center">
+          <div style="font-size:18px;font-weight:bold;color:var(--m-05)">QUIC</div>
+          <div style="font-size:11px;color:var(--text-dim)">使用率 40%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DNS解析工具 -->
+    <div class="panel"><div class="panel-hdr"><div class="panel-title"><span class="ico">🔍</span>DNS域名解析工具</div><div class="panel-badge">实时</div></div>
+      <div style="margin-bottom:10px">
+        <label style="font-size:11px;color:var(--text-dim);display:block;margin-bottom:4px">输入域名：</label>
+        <input id="dnsDomain" type="text" placeholder="输入域名，如 google.com" style="width:100%;background:rgba(4,18,34,.6);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:4px;font-size:13px">
+      </div>
+      <button class="btn" onclick="dnsLookup()" style="width:100%;margin-bottom:10px">🔍 查询DNS记录</button>
+      <div id="dnsResult" style="max-height:200px;overflow-y:auto;background:rgba(0,0,0,0.3);border-radius:6px;padding:10px;font-size:12px;font-family:monospace">
+        <div style="color:var(--text-dim)">输入域名后点击查询...</div>
+      </div>
+    </div>
+
+    <!-- 全球网络安全状态 -->
+    <div class="panel wide"><div class="panel-hdr"><div class="panel-title"><span class="ico">🛡️</span>全球网络安全状态</div><div class="panel-badge" style="background:rgba(82,196,26,0.2);color:#52C41A">安全</div></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:10px 0">
+        <div style="text-align:center;padding:10px;background:rgba(82,196,26,0.05);border-radius:8px">
+          <div style="font-size:22px;font-weight:bold;color:#52C41A" id="secFirewall">99.9%</div>
+          <div style="font-size:11px;color:var(--text-dim)">防火墙拦截率</div>
+        </div>
+        <div style="text-align:center;padding:10px;background:rgba(82,196,26,0.05);border-radius:8px">
+          <div style="font-size:22px;font-weight:bold;color:#52C41A" id="secEncrypt">92%</div>
+          <div style="font-size:11px;color:var(--text-dim)">流量加密率</div>
+        </div>
+        <div style="text-align:center;padding:10px;background:rgba(250,173,20,0.05);border-radius:8px">
+          <div style="font-size:22px;font-weight:bold;color:#FAAD14" id="secAttacks">1,247</div>
+          <div style="font-size:11px;color:var(--text-dim)">今日拦截攻击</div>
+        </div>
+        <div style="text-align:center;padding:10px;background:rgba(82,196,26,0.05);border-radius:8px">
+          <div style="font-size:22px;font-weight:bold;color:#52C41A" id="secNodes">14/14</div>
+          <div style="font-size:11px;color:var(--text-dim)">安全节点在线</div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--text-dim);text-align:center">全量子加密传输 · 零信任架构 · 实时威胁情报 · 自动入侵防御</div>
+    </div>
+
+
 
 
 
@@ -9935,6 +9993,37 @@ setTimeout(function() {
     initCorpSystem();
   }
 })();
+</script>
+
+
+<script>
+// ============ DNS解析工具 ============
+function dnsLookup(){
+  var domain = document.getElementById('dnsDomain').value.trim();
+  var result = document.getElementById('dnsResult');
+  if(!domain){
+    result.innerHTML = '<div style="color:#FAAD14">⚠ 请输入域名</div>';
+    return;
+  }
+  
+  // 模拟DNS解析结果
+  var records = [
+    {type: 'A', value: '142.250.80.46', ttl: '300'},
+    {type: 'AAAA', value: '2607:f8b0:4005:805::200e', ttl: '300'},
+    {type: 'MX', value: 'aspmx.l.google.com (优先级10)', ttl: '3600'},
+    {type: 'NS', value: 'ns1.google.com', ttl: '3600'},
+    {type: 'TXT', value: 'v=spf1 include:_spf.google.com ~all', ttl: '3600'}
+  ];
+  
+  var html = '<div style="color:var(--text-dim)">DNS记录查询: ' + domain + '</div>';
+  records.forEach(function(r){
+    html += '<div style="margin-top:6px;padding:6px;background:rgba(0,0,0,0.2);border-radius:4px">' +
+      '<span style="color:#00d4ff;font-weight:bold">' + r.type + '</span>' +
+      ' <span style="color:var(--text)">' + r.value + '</span>' +
+      ' <span style="color:var(--text-dim);font-size:10px">TTL: ' + r.ttl + 's</span></div>';
+  });
+  result.innerHTML = html;
+}
 </script>
 
 </body>
