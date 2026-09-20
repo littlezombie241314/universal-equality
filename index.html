@@ -3875,6 +3875,16 @@ function loadWorkState(){
       }
       console.log('✓ 工作状态已恢复：累计 earned='+earned.toLocaleString());
     }
+    
+    // 自动开始工作
+    if(!working){
+      setTimeout(function(){
+        if(typeof toggleWork === 'function' && !working){
+          toggleWork();
+          console.log('✓ 工作系统已自动启动');
+        }
+      }, 1000);
+    }
   }catch(e){console.warn('恢复工作状态失败',e);}
 }
 
