@@ -10405,21 +10405,62 @@ setTimeout(function() {
     {name: '仙女座共和国工业', industry: '星际工业', employees: 500000000, dailyFund: 50000000000}
   ];
   
+  // 保存公司资金状态
+  function saveCorpState(){
+    try{
+      var data = {
+        totalDistributed: corpState.totalDistributed.toString(),
+        running: corpState.running,
+        savedAt: new Date().toISOString()
+      };
+      localStorage.setItem('corpFundState', JSON.stringify(data));
+    }catch(e){console.warn('保存公司资金状态失败', e);}
+  }
+  
+  // 加载公司资金状态
+  function loadCorpState(){
+    try{
+      var saved = localStorage.getItem('corpFundState');
+      if(saved){
+        var data = JSON.parse(saved);
+        if(data.totalDistributed){
+          corpState.totalDistributed = BigInt(data.totalDistributed);
+          console.log('✓ 公司资金状态已恢复: 累计发放=' + corpState.totalDistributed.toString());
+        }
+        if(typeof data.running !== 'undefined'){
+          corpState.running = data.running;
+        }
+      }
+    }catch(e){console.warn('恢复公司资金状态失败', e);}
+  }
+  
   function initCorpSystem(){
     corpState.companies = presetCompanies;
     corpState.totalEmployees = 120000000000000000; // 120亿亿全宇宙存在
-    corpState.totalDistributed = BigInt(Math.floor(Math.random()*1e12 + 1e12));
+    
+    // 加载已保存的累计发放资金
+    loadCorpState();
+    
+    // 如果没有保存的累计发放，初始化随机值
+    if(corpState.totalDistributed === BigInt(0)){
+      corpState.totalDistributed = BigInt(Math.floor(Math.random()*1e12 + 1e12));
+    }
     
     renderCompanies();
     updateCorpStats();
     addCorpLog('全宇宙公司资金发放系统已启动', 'ok');
     addCorpLog('合作公司数：' + corpState.companies.length, 'info');
+    addCorpLog('累计发放资金已恢复：' + (Number(corpState.totalDistributed)/1e12).toFixed(2) + '万亿', 'info');
     
     // 每秒自动发放
     setInterval(function(){
       if(corpState.running){
         corpState.totalDistributed += BigInt(corpState.perSecond);
         updateCorpStats();
+        // 每10秒保存一次
+        if(Number(corpState.totalDistributed) % (corpState.perSecond * 10) < corpState.perSecond){
+          saveCorpState();
+        }
       }
     }, 1000);
   }
