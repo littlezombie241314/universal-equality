@@ -832,7 +832,7 @@ select option{background:#040b1a;color:var(--cyan)}
         <button class="btn teal" id="corpToggleBtn" onclick="toggleCorpDistribution()" style="font-size:13px">⏸ 暂停自动发放</button>
         <button class="btn amber" onclick="distributeCorpFundsNow()" style="font-size:13px">⚡ 立即发放一轮</button>
       </div>
-      <div style="font-size:11px;color:var(--text-dim);margin-bottom:8px">合作公司列表：</div>
+      <div style="font-size:11px;color:var(--text-dim);margin-bottom:8px">全宇宙所有公司列表（按星球/星系分类）：</div>
       <div id="corpCompanyList" style="max-height:250px;overflow-y:auto">
         <!-- 公司列表由JS动态生成 -->
       </div>
@@ -10945,20 +10945,60 @@ setTimeout(function() {
     totalEmployees: 0
   };
   
-  // 预设全宇宙合作公司
+  // 全宇宙所有公司（按星球/星系分类展示）
   var presetCompanies = [
-    {name: '阿里巴巴集团', industry: '电商科技', employees: 250000, dailyFund: 100000000},
-    {name: '腾讯控股', industry: '互联网科技', employees: 100000, dailyFund: 80000000},
-    {name: '字节跳动', industry: '人工智能', employees: 150000, dailyFund: 120000000},
-    {name: '华为技术', industry: '通信科技', employees: 200000, dailyFund: 150000000},
-    {name: '苹果公司', industry: '消费电子', employees: 164000, dailyFund: 200000000},
-    {name: '谷歌Alphabet', industry: '搜索引擎', employees: 180000, dailyFund: 180000000},
-    {name: '微软公司', industry: '软件云服务', employees: 221000, dailyFund: 190000000},
-    {name: '亚马逊集团', industry: '电商云服务', employees: 1525000, dailyFund: 500000000},
-    {name: '特斯拉公司', industry: '新能源汽车', employees: 140000, dailyFund: 130000000},
-    {name: 'SpaceX太空探索', industry: '航天科技', employees: 13000, dailyFund: 50000000},
-    {name: '银河系联邦企业', industry: '星际贸易', employees: 1000000000, dailyFund: 99999999999},
-    {name: '仙女座共和国工业', industry: '星际工业', employees: 500000000, dailyFund: 50000000000}
+    // 地球 - 中国企业
+    {name: '阿里巴巴集团', industry: '电商科技·中国', employees: 250000, dailyFund: 100000000},
+    {name: '腾讯控股', industry: '互联网科技·中国', employees: 100000, dailyFund: 80000000},
+    {name: '字节跳动', industry: '人工智能·中国', employees: 150000, dailyFund: 120000000},
+    {name: '华为技术', industry: '通信科技·中国', employees: 200000, dailyFund: 150000000},
+    {name: '京东集团', industry: '电商物流·中国', employees: 300000, dailyFund: 90000000},
+    {name: '美团点评', industry: '本地生活·中国', employees: 100000, dailyFund: 70000000},
+    {name: '拼多多', industry: '电商科技·中国', employees: 80000, dailyFund: 60000000},
+    {name: '百度集团', industry: '人工智能·中国', employees: 50000, dailyFund: 50000000},
+    {name: '小米科技', industry: '智能硬件·中国', employees: 30000, dailyFund: 40000000},
+    {name: '比亚迪股份', industry: '新能源汽车·中国', employees: 200000, dailyFund: 110000000},
+    
+    // 地球 - 国际企业
+    {name: '苹果公司', industry: '消费电子·美国', employees: 164000, dailyFund: 200000000},
+    {name: '谷歌Alphabet', industry: '搜索引擎·美国', employees: 180000, dailyFund: 180000000},
+    {name: '微软公司', industry: '软件云服务·美国', employees: 221000, dailyFund: 190000000},
+    {name: '亚马逊集团', industry: '电商云服务·美国', employees: 1525000, dailyFund: 500000000},
+    {name: '特斯拉公司', industry: '新能源汽车·美国', employees: 140000, dailyFund: 130000000},
+    {name: 'SpaceX太空探索', industry: '航天科技·美国', employees: 13000, dailyFund: 50000000},
+    {name: 'Meta(Facebook)', industry: '社交网络·美国', employees: 71000, dailyFund: 100000000},
+    {name: '英伟达NVIDIA', industry: '芯片AI·美国', employees: 30000, dailyFund: 120000000},
+    {name: '三星电子', industry: '电子科技·韩国', employees: 267000, dailyFund: 140000000},
+    {name: '丰田汽车', industry: '汽车制造·日本', employees: 372000, dailyFund: 160000000},
+    
+    // 月球基地企业
+    {name: '月球联邦矿业', industry: '月球采矿·月球', employees: 1000000, dailyFund: 5000000000},
+    {name: '月球基建集团', industry: '月球建设·月球', employees: 800000, dailyFund: 4000000000},
+    {name: '月球科研联合体', industry: '月球科研·月球', employees: 500000, dailyFund: 3000000000},
+    
+    // 火星殖民地企业
+    {name: '火星地球化公司', industry: '火星改造·火星', employees: 2000000, dailyFund: 10000000000},
+    {name: '火星农业集团', industry: '火星农业·火星', employees: 1500000, dailyFund: 8000000000},
+    {name: '火星能源公司', industry: '火星能源·火星', employees: 1200000, dailyFund: 7000000000},
+    
+    // 太阳系其他星球企业
+    {name: '木卫二海洋开发', industry: '海洋开发·木卫二', employees: 800000, dailyFund: 6000000000},
+    {name: '泰坦矿业集团', industry: '矿业开发·泰坦星', employees: 600000, dailyFund: 5000000000},
+    {name: '金星工业集团', industry: '工业制造·金星', employees: 900000, dailyFund: 7000000000},
+    
+    // 星际企业
+    {name: '银河系联邦企业', industry: '星际贸易·银河系', employees: 1000000000, dailyFund: 99999999999},
+    {name: '仙女座共和国工业', industry: '星际工业·仙女座', employees: 500000000, dailyFund: 50000000000},
+    {name: '三角座星系联盟', industry: '星际联盟·三角座', employees: 300000000, dailyFund: 30000000000},
+    {name: '大麦哲伦贸易', industry: '星际贸易·大麦哲伦', employees: 200000000, dailyFund: 20000000000},
+    {name: '小麦哲伦工业', industry: '星际工业·小麦哲伦', employees: 150000000, dailyFund: 15000000000},
+    
+    // 全宇宙综合企业
+    {name: '全宇宙资源集团', industry: '资源开发·全宇宙', employees: 10000000000, dailyFund: 999999999999},
+    {name: '全宇宙金融联盟', industry: '金融服务·全宇宙', employees: 5000000000, dailyFund: 500000000000},
+    {name: '全宇宙科技联合体', industry: '科技研发·全宇宙', employees: 8000000000, dailyFund: 800000000000},
+    {name: '全宇宙运输集团', industry: '星际运输·全宇宙', employees: 3000000000, dailyFund: 300000000000},
+    {name: '全宇宙能源公司', industry: '能源供应·全宇宙', employees: 4000000000, dailyFund: 400000000000}
   ];
   
   // 保存公司资金状态
@@ -11037,6 +11077,8 @@ setTimeout(function() {
     if(countEl) countEl.textContent = corpState.companies.length;
     var empEl = document.getElementById('corpEmployees');
     if(empEl) empEl.textContent = '120亿亿';
+    var compCountEl = document.getElementById('corpCompanies');
+    if(compCountEl) compCountEl.textContent = presetCompanies.length + '家（全宇宙所有公司）';
   }
   
   function updateCorpStats(){
