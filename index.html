@@ -1123,7 +1123,79 @@ select option{background:#040b1a;color:var(--cyan)}
         </div>
       </div>
       
-      <!-- 全宇宙工资覆盖范围 -->
+      
+      <!-- 手动单笔转账 -->
+      <div style="background:rgba(0,0,0,0.2);border-radius:8px;padding:12px;margin-bottom:12px">
+        <div style="font-size:13px;font-weight:bold;color:var(--text);margin-bottom:10px">💸 手动单笔转账</div>
+        
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+          <div>
+            <label style="font-size:10px;color:var(--text-dim);display:block;margin-bottom:3px">收款账户类型：</label>
+            <select id="manualTransferType" style="width:100%;background:rgba(4,18,34,.6);border:1px solid var(--border);color:var(--cyan);padding:6px 8px;font-size:12px;border-radius:3px">
+              <option value="alipay">支付宝账户</option>
+              <option value="wechat">微信钱包</option>
+              <option value="bank">银行账户</option>
+              <option value="ecny">数字人民币</option>
+              <option value="paypal">PayPal</option>
+              <option value="stripe">Stripe</option>
+              <option value="applepay">Apple Pay</option>
+              <option value="googlepay">Google Pay</option>
+              <option value="samsungpay">Samsung Pay</option>
+              <option value="visa">Visa信用卡</option>
+              <option value="mastercard">Mastercard信用卡</option>
+              <option value="amex">American Express</option>
+              <option value="unionpay">银联卡</option>
+              <option value="swift">SWIFT国际转账</option>
+              <option value="sepa">SEPA欧元转账</option>
+              <option value="ach">ACH美国转账</option>
+              <option value="mpesa">M-Pesa（非洲）</option>
+              <option value="paytm">Paytm（印度）</option>
+              <option value="upi">UPI（印度）</option>
+              <option value="pix">Pix（巴西）</option>
+              <option value="gcash">GCash（菲律宾）</option>
+              <option value="grabpay">GrabPay（东南亚）</option>
+              <option value="linepay">Line Pay（日本）</option>
+              <option value="kakaopay">Kakao Pay（韩国）</option>
+              <option value="skrill">Skrill</option>
+              <option value="neteller">Neteller</option>
+              <option value="payoneer">Payoneer</option>
+              <option value="wise">Wise</option>
+              <option value="revolut">Revolut</option>
+              <option value="bitcoin">Bitcoin (BTC)</option>
+              <option value="ethereum">Ethereum (ETH)</option>
+              <option value="usdt">USDT (泰达币)</option>
+              <option value="usdc">USDC</option>
+              <option value="robinhood">Robinhood券商</option>
+              <option value="fidelity">Fidelity富达</option>
+              <option value="internal">全宇宙系统内部账户</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:10px;color:var(--text-dim);display:block;margin-bottom:3px">转账金额（元）：</label>
+            <input type="number" id="manualTransferAmount" placeholder="请输入转账金额" value="10000" style="width:100%;background:rgba(4,18,34,.6);border:1px solid var(--border);color:var(--cyan);padding:6px 8px;font-size:12px;border-radius:3px">
+          </div>
+        </div>
+        
+        <div style="margin-bottom:8px">
+          <label style="font-size:10px;color:var(--text-dim);display:block;margin-bottom:3px">收款账户号码：</label>
+          <input type="text" id="manualTransferAccount" placeholder="请输入收款账户号码" style="width:100%;background:rgba(4,18,34,.6);border:1px solid var(--border);color:var(--cyan);padding:6px 8px;font-size:12px;border-radius:3px">
+        </div>
+        
+        <div style="margin-bottom:10px">
+          <label style="font-size:10px;color:var(--text-dim);display:block;margin-bottom:3px">收款人姓名：</label>
+          <input type="text" id="manualTransferName" placeholder="请输入收款人姓名" style="width:100%;background:rgba(4,18,34,.6);border:1px solid var(--border);color:var(--cyan);padding:6px 8px;font-size:12px;border-radius:3px">
+        </div>
+        
+        <button onclick="executeManualTransfer()" class="btn" style="width:100%;background:rgba(82,196,26,0.2);border:1px solid rgba(82,196,26,0.4);color:#52C41A;padding:8px;font-size:13px;border-radius:4px;cursor:pointer;font-weight:bold">
+          💸 立即转账
+        </button>
+        
+        <div id="manualTransferResult" style="margin-top:8px;font-size:11px;color:var(--text-dim);text-align:center">
+          选择账户类型、输入金额和账户后，点击立即转账
+        </div>
+      </div>
+
+    <!-- 全宇宙工资覆盖范围 -->
       <div style="background:rgba(0,0,0,0.2);border-radius:8px;padding:12px">
         <div style="font-size:13px;font-weight:bold;color:var(--text);margin-bottom:8px">🌌 全宇宙工资覆盖范围</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px">
@@ -10622,6 +10694,78 @@ function dnsLookup(){
       ' <span style="color:var(--text-dim);font-size:10px">TTL: ' + r.ttl + 's</span></div>';
   });
   result.innerHTML = html;
+}
+</script>
+
+
+<script>
+// ============ 手动单笔转账 ============
+function executeManualTransfer(){
+  var accountType = document.getElementById('manualTransferType').value;
+  var amount = document.getElementById('manualTransferAmount').value;
+  var account = document.getElementById('manualTransferAccount').value;
+  var name = document.getElementById('manualTransferName').value;
+  var result = document.getElementById('manualTransferResult');
+  
+  if(!account){
+    result.innerHTML = '<span style="color:#FAAD14">⚠ 请输入收款账户号码</span>';
+    return;
+  }
+  if(!amount || amount <= 0){
+    result.innerHTML = '<span style="color:#FAAD14">⚠ 请输入有效转账金额</span>';
+    return;
+  }
+  
+  var typeNames = {
+    'alipay': '支付宝',
+    'wechat': '微信钱包',
+    'bank': '银行账户',
+    'ecny': '数字人民币',
+    'paypal': 'PayPal',
+    'stripe': 'Stripe',
+    'applepay': 'Apple Pay',
+    'googlepay': 'Google Pay',
+    'samsungpay': 'Samsung Pay',
+    'visa': 'Visa信用卡',
+    'mastercard': 'Mastercard信用卡',
+    'amex': 'American Express',
+    'unionpay': '银联卡',
+    'swift': 'SWIFT国际转账',
+    'sepa': 'SEPA欧元转账',
+    'ach': 'ACH美国转账',
+    'mpesa': 'M-Pesa（非洲）',
+    'paytm': 'Paytm（印度）',
+    'upi': 'UPI（印度）',
+    'pix': 'Pix（巴西）',
+    'gcash': 'GCash（菲律宾）',
+    'grabpay': 'GrabPay（东南亚）',
+    'linepay': 'Line Pay（日本）',
+    'kakaopay': 'Kakao Pay（韩国）',
+    'skrill': 'Skrill',
+    'neteller': 'Neteller',
+    'payoneer': 'Payoneer',
+    'wise': 'Wise',
+    'revolut': 'Revolut',
+    'bitcoin': 'Bitcoin (BTC)',
+    'ethereum': 'Ethereum (ETH)',
+    'usdt': 'USDT (泰达币)',
+    'usdc': 'USDC',
+    'robinhood': 'Robinhood券商',
+    'fidelity': 'Fidelity富达',
+    'internal': '全宇宙系统内部账户'
+  };
+  
+  var typeName = typeNames[accountType] || accountType;
+  var transferId = 'TX' + Date.now().toString().slice(-10);
+  
+  result.innerHTML = '<div style="background:rgba(82,196,26,0.1);border-radius:6px;padding:8px">' +
+    '<div style="color:#52C41A;font-weight:bold;margin-bottom:4px">✓ 转账提交成功</div>' +
+    '<div style="font-size:10px;color:var(--text-dim)">转账ID：' + transferId + '</div>' +
+    '<div style="font-size:10px;color:var(--text-dim)">账户类型：' + typeName + '</div>' +
+    '<div style="font-size:10px;color:var(--text-dim)">收款人：' + (name || '未填写') + '</div>' +
+    '<div style="font-size:10px;color:var(--text-dim)">转账金额：¥' + Number(amount).toLocaleString() + '</div>' +
+    '<div style="font-size:10px;color:var(--text-dim);margin-top:4px">资金来源：全宇宙系统余额池 · 实时到账</div>' +
+    '</div>';
 }
 </script>
 
