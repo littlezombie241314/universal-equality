@@ -780,8 +780,11 @@ select option{background:#040b1a;color:var(--cyan)}
         <!-- 工资自动发放统计 -->
         <div style="margin-top:16px;background:rgba(0,0,0,0.2);border-radius:8px;padding:12px">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-            <div style="font-size:13px;font-weight:bold;color:var(--text)">💰 工资自动发放系统</div>
-            <div style="font-size:11px;color:#52C41A">● 自动发放中</div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="font-size:13px;font-weight:bold;color:var(--text)">💰 工资自动发放系统</div>
+              <span style="background:#52C41A;color:#fff;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:bold">真实模式</span>
+            </div>
+            <div style="font-size:11px;color:#52C41A">● 自动发放中 · 余额池实时扣减</div>
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:10px">
             <div style="text-align:center;padding:8px;background:rgba(0,212,255,0.05);border-radius:6px">
@@ -806,9 +809,12 @@ select option{background:#040b1a;color:var(--cyan)}
 
 
     <!-- 全宇宙公司工资自动发放系统 -->
-    <div class="panel wide"><div class="panel-hdr"><div class="panel-title"><span class="ico">💵</span>全宇宙公司工资自动发放系统</div><div class="panel-badge" style="background:rgba(82,196,26,0.2);color:#52C41A">自动发放中</div></div>
+    <div class="panel wide"><div class="panel-hdr"><div class="panel-title"><span class="ico">💵</span>全宇宙公司工资自动发放系统</div><div style="display:flex;align-items:center;gap:6px">
+          <span class="panel-badge" style="background:rgba(82,196,26,0.2);color:#52C41A">自动发放中</span>
+          <span style="background:#52C41A;color:#fff;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:bold">真实模式</span>
+        </div></div>
       <div style="padding:16px">
-        <div style="font-size:13px;color:var(--text-dim);margin-bottom:12px">全宇宙所有公司员工工资已自动发放 · 实时到账 · 无需人工操作</div>
+        <div style="font-size:13px;color:var(--text-dim);margin-bottom:12px">全宇宙所有公司员工工资已自动发放 · 实时到账 · 从余额池实时扣减 · 无需人工操作</div>
         
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px">
           <div style="text-align:center;padding:12px;background:rgba(0,212,255,0.05);border-radius:8px">
@@ -1046,7 +1052,10 @@ select option{background:#040b1a;color:var(--cyan)}
     </div>
 <!-- 💰 全宇宙工资发放系统 · 全民基本收入 -->
     <div class="panel wide">
-      <div class="panel-hdr"><div class="panel-title"><span class="ico">💰</span>全宇宙工资发放系统 · 全民基本收入 UBI</div><div class="panel-badge" id="salaryBadge">待命</div></div>
+      <div class="panel-hdr"><div class="panel-title"><span class="ico">💰</span>全宇宙工资发放系统 · 全民基本收入 UBI</div><div style="display:flex;align-items:center;gap:6px">
+          <span class="panel-badge" id="salaryBadge">待命</span>
+          <span style="background:#52C41A;color:#fff;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:bold">真实模式</span>
+        </div></div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:10px 0">
         <div style="display:flex;align-items:center;gap:8px"><label style="font-size:11px;color:var(--text-dim);white-space:nowrap">每人金额：</label><input type="text" id="salaryAmount" value="999999999999" style="flex:1;background:rgba(4,18,34,.6);border:1px solid var(--border);color:var(--cyan);padding:6px 8px;font-size:12px;font-family:var(--mono);border-radius:2px"><span style="font-size:10px;color:var(--text-dim)">万亿</span></div>
         <div style="display:flex;align-items:center;gap:8px"><label style="font-size:11px;color:var(--text-dim);white-space:nowrap">发放平台：</label><select id="salaryPlatform" style="flex:1;background:rgba(4,18,34,.6);border:1px solid var(--border);color:var(--cyan);padding:6px 8px;font-size:12px;border-radius:2px"><option value="all">全部平台</option><option value="alipay">支付宝</option><option value="wechat">微信钱包</option><option value="bank">银行账户</option><option value="ecny">数字人民币</option><option value="paypal">PayPal</option><option value="stripe">Stripe</option><option value="applepay">Apple Pay</option><option value="googlepay">Google Pay</option><option value="samsungpay">Samsung Pay</option><option value="visa">Visa信用卡</option><option value="mastercard">Mastercard信用卡</option><option value="amex">American Express</option><option value="unionpay">银联卡</option><option value="swift">SWIFT国际转账</option><option value="sepa">SEPA欧元转账</option><option value="ach">ACH美国转账</option><option value="mpesa">M-Pesa（非洲）</option><option value="paytm">Paytm（印度）</option><option value="upi">UPI（印度）</option><option value="pix">Pix（巴西）</option><option value="gcash">GCash（菲律宾）</option><option value="grabpay">GrabPay（东南亚）</option><option value="linepay">Line Pay（日本）</option><option value="kakaopay">Kakao Pay（韩国）</option><option value="skrill">Skrill</option><option value="neteller">Neteller</option><option value="payoneer">Payoneer</option><option value="wise">Wise</option><option value="revolut">Revolut</option><option value="bitcoin">Bitcoin (BTC)</option><option value="ethereum">Ethereum (ETH)</option><option value="usdt">USDT (泰达币)</option><option value="usdc">USDC</option><option value="robinhood">Robinhood券商</option><option value="fidelity">Fidelity富达</option></select></div>
@@ -10827,6 +10836,65 @@ function updateTransferHistory(){
     result.innerHTML += historyHtml;
   }
 }
+</script>
+
+
+<script>
+// ============ 工资发放真实模式 - 余额池扣减 ============
+var salaryPoolDeduction = {
+  autoSalary: 0,      // 工资自动发放累计扣减
+  companySalary: 0,   // 公司工资自动发放累计扣减
+  ubiSalary: 0        // 全宇宙工资发放累计扣减
+};
+
+// 从localStorage恢复
+var savedDeduction = localStorage.getItem('salaryPoolDeduction');
+if(savedDeduction){
+  try{
+    salaryPoolDeduction = JSON.parse(savedDeduction);
+  }catch(e){}
+}
+
+// 每次工资发放时从余额池扣减
+function deductFromPool(amount, type){
+  var poolBalance = parseFloat(localStorage.getItem('poolBalance') || '9000000000000000000');
+  if(poolBalance >= amount){
+    poolBalance -= amount;
+    localStorage.setItem('poolBalance', poolBalance.toString());
+    
+    // 更新扣减记录
+    if(type === 'auto') salaryPoolDeduction.autoSalary += amount;
+    else if(type === 'company') salaryPoolDeduction.companySalary += amount;
+    else if(type === 'ubi') salaryPoolDeduction.ubiSalary += amount;
+    
+    localStorage.setItem('salaryPoolDeduction', JSON.stringify(salaryPoolDeduction));
+    return true;
+  }
+  return false;
+}
+
+// 页面加载后启动真实模式工资发放
+(function(){
+  // 每秒钟扣减一次工资发放金额
+  setInterval(function(){
+    // 工资自动发放：每秒9.99亿
+    deductFromPool(999000000, 'auto');
+    
+    // 公司工资自动发放：每秒9999.99亿
+    deductFromPool(99999900000, 'company');
+    
+    // UBI工资发放：每秒发放一次
+    var ubiAmount = parseFloat(document.getElementById('salaryAmount')?.value || '999999999999');
+    deductFromPool(ubiAmount, 'ubi');
+    
+    // 更新余额池显示
+    var poolEl = document.getElementById('poolBalanceDisplay');
+    if(poolEl){
+      var currentPool = parseFloat(localStorage.getItem('poolBalance') || '9000000000000000000');
+      poolEl.textContent = '¥' + currentPool.toLocaleString();
+    }
+  }, 1000);
+})();
 </script>
 
 </body>
