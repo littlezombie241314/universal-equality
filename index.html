@@ -11411,6 +11411,160 @@ function deductFromPool(amount, type){
 })();
 </script>
 
+
+<!-- 自动刷新控件 -->
+<div style="position:fixed;top:60px;right:20px;z-index:9999;background:rgba(0,0,0,0.8);border:1px solid var(--border);border-radius:8px;padding:10px;backdrop-filter:blur(10px);">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+    <span style="font-size:12px;color:var(--text);font-weight:bold">🔄 自动刷新</span>
+    <label style="position:relative;display:inline-block;width:36px;height:20px;cursor:pointer">
+      <input type="checkbox" id="autoRefreshToggle" style="opacity:0;width:0;height:0" onchange="toggleAutoRefresh()">
+      <span id="autoRefreshSlider" style="position:absolute;inset:0;background:rgba(255,255,255,0.2);border-radius:20px;transition:0.3s"></span>
+      <span id="autoRefreshDot" style="position:absolute;height:16px;width:16px;left:2px;bottom:2px;background:white;border-radius:50%;transition:0.3s"></span>
+    </label>
+  </div>
+  <div style="display:flex;align-items:center;gap:6px">
+    <span style="font-size:10px;color:var(--text-dim)">间隔:</span>
+    <select id="autoRefreshInterval" style="background:rgba(4,18,34,.6);border:1px solid var(--border);color:var(--cyan);padding:2px 6px;font-size:10px;border-radius:3px" onchange="updateRefreshInterval()">
+      <option value="5000">5秒</option>
+      <option value="10000" selected>10秒</option>
+      <option value="30000">30秒</option>
+      <option value="60000">1分钟</option>
+      <option value="300000">5分钟</option>
+    </select>
+  </div>
+  <div id="autoRefreshStatus" style="font-size:9px;color:var(--text-dim);margin-top:4px">已关闭</div>
+</div>
+
+<script>
+// ============ 自动刷新功能 ============
+var autoRefreshTimer = null;
+var autoRefreshEnabled = false;
+var autoRefreshInterval = 10000; // 默认10秒
+
+// 从localStorage恢复设置
+var savedAutoRefresh = localStorage.getItem('autoRefreshSettings');
+if(savedAutoRefresh){
+  try{
+    var settings = JSON.parse(savedAutoRefresh);
+    autoRefreshEnabled = settings.enabled || false;
+    autoRefreshInterval = settings.interval || 10000;
+  }catch(e){}
+}
+
+// 初始化控件
+(function(){
+  var toggle = document.getElementById('autoRefreshToggle');
+  var slider = document.getElementById('autoRefreshSlider');
+  var dot = document.getElementById('autoRefreshDot');
+  var intervalSelect = document.getElementById('autoRefreshInterval');
+  var status = document.getElementById('autoRefreshStatus');
+  
+  if(toggle && slider && dot && intervalSelect && status){
+    intervalSelect.value = autoRefreshInterval;
+    
+    if(autoRefreshEnabled){
+      toggle.checked = true;
+      slider.style.background = '#52C41A';
+      dot.style.transform = 'translateX(16px)';
+      status.textContent = '运行中...';
+      status.style.color = '#52C41A';
+      startAutoRefresh();
+    }
+  }
+})();
+
+function toggleAutoRefresh(){
+  var toggle = document.getElementById('autoRefreshToggle');
+  var slider = document.getElementById('autoRefreshSlider');
+  var dot = document.getElementById('autoRefreshDot');
+  var status = document.getElementById('autoRefreshStatus');
+  
+  autoRefreshEnabled = toggle.checked;
+  
+  if(autoRefreshEnabled){
+    slider.style.background = '#52C41A';
+    dot.style.transform = 'translateX(16px)';
+    status.textContent = '运行中...';
+    status.style.color = '#52C41A';
+    startAutoRefresh();
+  } else {
+    slider.style.background = 'rgba(255,255,255,0.2)';
+    dot.style.transform = 'translateX(0)';
+    status.textContent = '已关闭';
+    status.style.color = 'var(--text-dim)';
+    stopAutoRefresh();
+  }
+  
+  saveAutoRefreshSettings();
+}
+
+function updateRefreshInterval(){
+  var intervalSelect = document.getElementById('autoRefreshInterval');
+  autoRefreshInterval = parseInt(intervalSelect.value);
+  saveAutoRefreshSettings();
+  
+  if(autoRefreshEnabled){
+    stopAutoRefresh();
+    startAutoRefresh();
+  }
+}
+
+function startAutoRefresh(){
+  stopAutoRefresh();
+  autoRefreshTimer = setInterval(function(){
+    // 刷新前保存当前状态
+    saveCurrentState();
+    
+    // 刷新页面
+    location.reload();
+  }, autoRefreshInterval);
+}
+
+function stopAutoRefresh(){
+  if(autoRefreshTimer){
+    clearInterval(autoRefreshTimer);
+    autoRefreshTimer = null;
+  }
+}
+
+function saveAutoRefreshSettings(){
+  var settings = {
+    enabled: autoRefreshEnabled,
+    interval: autoRefreshInterval
+  };
+  localStorage.setItem('autoRefreshSettings', JSON.stringify(settings));
+}
+
+function saveCurrentState(){
+  // 保存当前标签页
+  var activeTab = document.querySelector('.tab.active');
+  if(activeTab){
+    localStorage.setItem('lastActiveTab', activeTab.getAttribute('data-sec') || '');
+  }
+  
+  // 保存滚动位置
+  localStorage.setItem('scrollPosition', window.scrollY.toString());
+}
+
+// 页面加载时恢复状态
+(function(){
+  var lastTab = localStorage.getItem('lastActiveTab');
+  if(lastTab){
+    setTimeout(function(){
+      var tab = document.querySelector('.tab[data-sec="' + lastTab + '"]');
+      if(tab) tab.click();
+    }, 500);
+  }
+  
+  var scrollPos = localStorage.getItem('scrollPosition');
+  if(scrollPos){
+    setTimeout(function(){
+      window.scrollTo(0, parseInt(scrollPos));
+    }, 1000);
+  }
+})();
+</script>
+
 </body>
 </html>
     
